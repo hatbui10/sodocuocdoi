@@ -1,421 +1,233 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>12 cung trong lá số tử vi</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-image: url('https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/489700rAB/anh-mo-ta.png');
-    background-size: cover; /* Ảnh tự giãn đầy màn hình */
-    background-position: center; /* Canh giữa */
-    background-repeat: no-repeat; /* Không lặp lại */
-        margin: 20px;
-        padding: 20px;
-        border: 5px solid #2a7ae2;
-        border-radius: 20px;
-    }
-     h1 {
-    font-size: 60px;
-    color: #fff;
-    letter-spacing: 3px;
-    text-align: center;
-    text-transform: uppercase;
-    animation: glow 2s ease-in-out infinite alternate;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Manager Pro - Dark Mode Full</title>
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent-blue: #38bdf8;
+            --border: #334155;
+        }
 
-  span {
-    display:inline-block;
-  animation:wave 2s ease-in-out infinite;
-  animation-delay:calc(var(--i) * 0.1s);
-  }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            margin: 0; padding: 20px;
+        }
 
-  /* Tạo độ trễ pha cho từng chữ */
-  span:nth-child(1) { animation-delay: 0s; }
-  span:nth-child(2) { animation-delay: 0.1s; }
-  span:nth-child(3) { animation-delay: 0.2s; }
-  span:nth-child(4) { animation-delay: 0.3s; }
-  span:nth-child(5) { animation-delay: 0.4s; }
-  span:nth-child(6) { animation-delay: 0.5s; }
-  span:nth-child(7) { animation-delay: 0.6s; }
-  span:nth-child(8) { animation-delay: 0.7s; }
-  span:nth-child(9) { animation-delay: 0.8s; }
-  span:nth-child(10) { animation-delay: 0.9s; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h2 { text-align: center; color: var(--accent-blue); margin-bottom: 30px; }
 
-  /* Sóng sin */
-  @keyframes wave {
-    0%, 100% { transform: translateY(0); }
-    25% { transform: translateY(-15px); }
-    75% { transform: translateY(15px); }
-  }
+        .category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
 
-  /* Hiệu ứng phát sáng */
-  @keyframes glow {
-    from {
-      text-shadow:
-        0 0 10px #FFC50F,
-        0 0 20px #BF1A1A,
-        0 0 30px #BF1A1A,
-        0 0 40px #BF1A1A;
-    }
-    to {
-      text-shadow:
-        0 0 20px #F5AD18,
-        0 0 40px #452829,
-        0 0 60px #452829,
-        0 0 80px #452829;
-    }
-  }
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-        gap: 20px;
-       
-    }
-    .box {
-        background-color: #B0CE88;
-        border: 2px solid #2a7ae2;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .box:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-    }
-    .title-line {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .dot {
-        font-size: 30px;
-        font-weight: bold;
-        color: #E2852E;
-        margin-right: 10px;
-    }
-    .type-title {
-        font-weight: bold;
-        color: #2a7ae2;
-        font-size: 20px;
-    }
-    .content-line {
-        margin-left: 38px;
-        margin-bottom: 5px;
-        position: relative;
-    }
-    .content-line::before {
-        content: "•";
-        position: absolute;
-        left: -20px;
-        color: #2a7ae2;
-        font-weight: bold;
-    }
-</style>
+        .category-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            background: #0f172a;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        button:hover {
+            border-color: var(--accent-blue);
+            background: #1e293b;
+            transform: translateY(-2px);
+        }
+
+        /* Modal */
+        .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display:none; z-index:9; }
+        #input-area {
+            position: fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+            background: var(--bg-card); padding: 25px; border-radius: 15px;
+            width: 90%; max-width: 400px; display:none; z-index:10; border: 1px solid var(--accent-blue);
+        }
+        input { width: 100%; padding: 12px; margin: 15px 0; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 5px; box-sizing: border-box;}
+        .modal-btns { display: flex; gap: 10px; }
+        .btn-save { background: var(--accent-blue); color: #0f172a; font-weight: bold; flex: 2; }
+        .btn-cancel { background: #475569; flex: 1; }
+    </style>
 </head>
 <body>
-<h1 id="text"><span>N</span><span>g</span><span>ư</span><span>u</span>&nbsp;<span>T</span><span>ầ</span><span>m</span>&nbsp;<span>N</span><span>g</span><span>ư</span><span>u</span><span>,</span>&nbsp;<span>M</span><span>ã</span>&nbsp;<span>T</span><span>ầ</span><span>m</span>&nbsp;<span>M</span><span>ã</span></h1>
 
-<div class="grid">
+<div class="container">
+    <h2>HỆ THỐNG QUẢN TRỊ CUỘC SỐNG</h2>
 
-    <!-- 1 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">1.</div>
-           <div class="type-title">Tùy thuộc theo giới :</div>
+    <div class="category">
+        <div class="category-title">🏠 Môi trường sống</div>
+        <div class="button-group">
+            <button onclick="editItem('env_nha')" id="env_nha">Nhà cửa: ...</button>
+            <button onclick="editItem('env_lamviec')" id="env_lamviec">Góc làm việc: ...</button>
         </div>
-         <div class="content-line"> Các chúng sanh cùng hòa hợp cùng đi với nhau.</div>
-         <div class="content-line">Các chúng sanh thiện ý chí cùng hòa hợp cùng đi với chúng sanh thiện ý chí.</div>
-         <div class="content-line">Chúng sanh liệt ý chí sẽ cùng hòa hợp, sẽ cùng đi với chúng sanh liệt ý chí.</div>
-         
-    </div>
-    <!-- 2 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">2.</div>
-             <div class="type-title">Có nghĩa là : </div>
-        </div>
-        <div class="content-line">Bạn thường dành thời gian để bố thí ,trì giới, hành thiền thì ngay trong hiện tại bạn sẽ có xu hướng tìm đến những người có
-        cùng tính cách đó với mình đồng thời những người có cùng tính cách đó cũng sẽ tìm đến bạn,sau khi thân hoại mạng chung khả năng cao bạn sẽ được tái sinh về
-        cảnh giới của những người có tâm bố thí ,trì giới, hành thiền</div>
-        
-        <div class="content-line">Bạn thường dành thời gian sống với tâm không hận, không sân, tâm từ thường xót tất cả chúng hữu tình thì ngay trong hiện tại bạn sẽ có xu hướng tìm đến những người có
-        cùng tính cách đó với mình đồng thời những người có cùng tính cách đó cũng sẽ tìm đến bạn,sau khi thân hoại mạng chung khả năng cao bạn sẽ được tái sinh về
-        cảnh giới của những người sống với tâm không hận, không sân, tâm từ thường xót tất cả chúng hữu tình</div>
-        
-        <div class="content-line">Bạn thường dành thời gian sống với tâm không nghĩ đến hại mình, không nghĩ đến hại người, 
-        không nghĩ đến hại cả hai thì ngay trong hiện tại bạn sẽ có xu hướng tìm đến những người có
-        cùng tính cách đó với mình đồng thời những người có cùng tính cách đó cũng sẽ tìm đến bạn,sau khi thân hoại mạng chung khả năng cao bạn sẽ được tái sinh về
-        cảnh giới của những người sống với tâm không nghĩ đến hại mình, không nghĩ đến hại người, không nghĩ đến hại cả hai</div>
-        <div class="content-line">Suy nghĩ,lời nói,hành động,làm những việc lợi mình, hại người</div>
-        <div class="content-line">Suy nghĩ,lời nói,hành động,làm những việc hại mình, lợi người</div>
-        <div class="content-line">Suy nghĩ,lời nói,hành động,làm những việc hại mình, hại người</div>
     </div>
 
-    <!-- 3 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">3.</div>
-            <div class="type-title">Nguyên tắc sống :</div>
+    <div class="category">
+        <div class="category-title">💼 Nghề nghiệp</div>
+        <div class="button-group">
+            <button onclick="editItem('job_duan')" id="job_duan">Dự án: ...</button>
+            <button onclick="editItem('job_luong')" id="job_luong">Vị trí: ...</button>
         </div>
-        <div class="content-line">Là thứ giúp bạn xác định đúng hướng đi, đúng mục tiêu.</div>
-        <div class="content-line">Người sống không có nguyên tắc thì lúc thế này lúc lại thế khác, không ổn định do vậy cuộc đời của họ cũng bấp bênh như thế</div>
-         <div class="content-line">Nguyên tắc là những điều không được vi phạm để đảm bao bạn đang đi đúng hướng. Điều đó không đồng nghĩa với việc là mọi thứ bị cố định không thể thay đổi.
-         mà cần hiểu cho đúng đắn. Ví dụ : "Không được đầu tư vào Cổ phiếu" khác với nguyên tắc "Không được đầu tư quá 10% tổng số vốn mình có vào cổ phiếu."</div>
-        <div class="content-line">Nguyên tắc sinh ra để ta có thể đưa mọi thứ vào trong tầm kiểm soát của mình chứ không phải ép mọi thứ thành 1 khuôn mẫu cố định không thể thay đổi.</div>      
-        <div class="content-line">Nguyên tắc mở cho phép con người ta có sự lựa chọn linh hoạt cho phù hợp với thời thế, còn nguyên tắc đóng nó chỉ phù hợp trong 1 số trường hợp cụ thể mà thôi.</div>
-        <div class="content-line">Nhưng không đồng nghĩa với việc " Làm thế nào cũng được". Làm thế nào cũng được chỉ đúng khi nó được đặt trong phạm vi cho phép.</div>
     </div>
 
-    <!-- 4 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">4.</div>
-            <div class="type-title">Phân loại :</div>
+    <div class="category">
+        <div class="category-title">👥 Hội nhóm</div>
+        <div class="button-group">
+            <button onclick="editItem('club_thethao')" id="club_thethao">Thể thao: ...</button>
+            <button onclick="editItem('club_congdong')" id="club_congdong">Cộng đồng: ...</button>
         </div>
-        <div class="content-line">Nếu một người sống mà không biết cái này là quan trọng hay không quan trọng, cái này cần làm trước hay cần làm sau, cái này cần bỏ ra bao nhiêu
-        thời gian công sức...thì họ thường mất nhiều thời gian công sức cho những thứ không quan trọng, và rồi khi cái quan trọng đến họ không còn đủ thời gian và công sức để làm nữa.</div>
-        <div class="content-line">Vì vậy, việc đầu tiên bạn cần làm là xác định rõ mục tiêu mà mình cần hướng đến, sau đó liệt kê hết tất cả những thứ trong cuộc sống của bạn ra.
-        sau khi đã liệt kê được 1 danh sách bạn bắt đầu phần loại chúng theo mức độ quan trọng và thứ tự ưu tiên.</div>
-        <div class="content-line">Sau khi đã phân loại được các công việc theo thứ tự quan trọng và mức độ ưu tiên. Bạn cần phần bổ nguồn lực là thời gian, tiền bạc, công sức cho từng 
-        hạng mục cụ thể. Cuối cùng bạn cần thực hiện chúng mỗi ngày cho đến khi thành thói quen, thậm chí thành phản xạ tự nhiên.</div>
-        <div class="content-line">Nếu có những khó khăn chướng ngại cản trở bạn thực hiện những điều bạn chọn và bạn không đủ sức để vượt qua, khi đó bạn có từ bỏ không?</div>
-        <div class="content-line">Nếu bạn luôn thất bại khi thực hiện những điều bạn chọn,liệu bạn có nghi ngờ bản thân và dừng bước không? </div>
-
     </div>
 
-    <!-- 5 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">5.</div>
-            <div class="type-title">Những lưu ý quan trọng:</div>
+    <div class="category">
+        <div class="category-title">🧠 Kỹ năng</div>
+        <div class="button-group">
+            <button onclick="editItem('skill_ngoaingu')" id="skill_ngoaingu">Ngoại ngữ: ...</button>
+            <button onclick="editItem('skill_chuyenmon')" id="skill_chuyenmon">Chuyên môn: ...</button>
         </div>
-        <div class="content-line">Khi bạn càng khó đạt được cái gì,nếu bạn không chịu bỏ cuộc và kiên quyết đạt được cái đó đến cùng,điều đó chứng tỏ cái đó rất quan trọng với bạn,nếu bạn từ bỏ giữa chừng chứng tỏ nó ko quan trọng lắm</div>
-        <div class="content-line">Bạn có cái gì điều đó không quan trọng, quan trọng là bạn sẽ làm gì với những cái đó để đạt được điều mà bạn mong muốn.</div>
-        <div class="content-line">Cuộc đời vốn không bằng phẳng và luôn có sẵn rất nhiều chướng ngại ngăn cản bạn đến với mục tiêu của mình.Luôn nhớ rằng có rất nhiều con đường để đi từ điểm A đến điểm B. 
-        Do vậy,luôn có cơ hội để cho bạn tìm ra một con đường mới cho riêng mình,đừng giới hạn bản thân, đừng sợ sai lầm, đừng sợ thay đổi nhưng cũng đừng vội vàng đưa ra những quyết định quan trọng nếu bản thân không chắc chắn.Và thật ra trên đời vốn không có gì là chắc chắn cả, cho nên đừng vội vàng làm gì.</div>
-        <div class="content-line">Hạnh phúc,an lạc không phải là khi bạn có được tất cả những gì mình muốn, mà là khi bạn học được cách hài lòng với những gì mình đang có.</div>
-        <div class="content-line">Cái chết chỉ đáng sợ đối với những người sống ác, nói ác, làm ác.Vì cớ sao? Vì rằng đó là lúc họ sẽ phải đối diện với sự đau khổ, đối diện với cực hình, đối diện với các ác nghiệp mà họ đã gây ra khi còn sống.
-        Còn với những người sống thiện, nói thiện, làm thiện cái chết với họ không đáng sợ. Vì cớ sao? Vì rằng, sau khi chết họ sẽ được tái sinh lên thiện thú thiên giới và hưởng quả của các thiện nghiện mà họ đã tạo ra khi còn sống.</div>
     </div>
 
-    <!-- 6 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">6.</div>
-            <div class="type-title">Nhìn vào tương lai :</div>
+    <div class="category">
+        <div class="category-title">🎨 Sở thích</div>
+        <div class="button-group">
+            <button onclick="editItem('hobby_dv')" id="hobby_dv">Giải trí: ...</button>
+            <button onclick="editItem('hobby_sangtao')" id="hobby_sangtao">Sáng tạo: ...</button>
         </div>
-        <div class="content-line">Hôm nay bạn không nghèo thì hôm sau bạn sẽ nghèo, hôm sau bạn không nghèo thì một ngày nào đó bạn sẽ nghèo, 
-        kiếp này bạn không nghèo thì kiếp sau bạn sẽ nghèo, nếu kiếp sau bạn không nghèo thì một kiếp nào đó trong tương lai bạn sẽ nghèo</div>
-        <div class="content-line">Hôm nay bạn không chết thì ngày mai bạn sẽ chết, nếu ngày mai bạn không chết thì ngày kia bạn sẽ chết, nếu ngày kia bạn không chết thì một ngày nào đó trong tương lai bạn sẽ chết</div>
-        <div class="content-line">Hôm nay bạn không bệnh thì ngày mai bạn sẽ bệnh, nếu ngày mai bạn không bệnh thì ngày kia bạn sẽ bệnh, nếu ngày kia bạn không bệnh thì một ngày nào đó trong tương lại bạn sẽ bệnh</div>
-        <div class="content-line">Hôm nay bạn không đau khổ thì ngày mai bạn sẽ đau khổ, nếu ngày mai bạn không đau khổ thì ngày kia bạn sẽ đau khổ, nếu ngày kia bạn không đau khổ thì một ngày nào đó trong tương lai bạn sẽ đau khổ</div>
-         <div class="content-line">Cho đến khi nào bạn chưa đóng được cánh cửa đi vào bốn đường ác đạo thì cho đến khi ấy bạn sẽ không tránh khỏi có ngày bị quăng vào ác thú,đoạ xứ, địa ngục trong một ngyaf hoặc một kiếp nào đó ở tương lai</div>
     </div>
 
-    <!-- 7 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">7.</div>
-            <div class="type-title">Thực tế cuộc sống :</div>
+    <div class="category">
+        <div class="category-title">🔄 Thói quen</div>
+        <div class="button-group">
+            <button onclick="editItem('habit_sang')" id="habit_sang">Sáng sớm: ...</button>
+            <button onclick="editItem('habit_toi')" id="habit_toi">Trước khi ngủ: ...</button>
         </div>
-        <div class="content-line">Ai cũng có những khó khăn của riêng mình, Người trẻ thì lo kiếm tiền, lập gia đình, người trưởng thành thì lo thăng quan tiến chức,
-        người trung niên thì lo sức khoẻ,hôn nhân trắc trở, người già thì lo không có người chăm sóc...<br> </div>
-        <div class="content-line">Thế nên người có nhiều tài sản, có nhiều mối quan hệ, có quyền lực thật ra 
-        ra cũng ko được sung sướng gì,người ngoài nhìn vào thì ao ước, chứ bản thân họ thì sầu não lo âu cả ngày.</div>
-        <div class="content-line">Người ta dành phần lớn cuộc đời để theo đuổi những thứ vốn chẳng thế giữ được sau khi chết,dùng thì không hết 
-        nhưng luôn cố kiếm cho thật nhiều rồi lại bị người khác tranh giành chiếm đoạt.Tự mình lao tâm khổ tứ để theo đuổi những thứ phù du 
-        dầu biết rằng cuối cùng chúng cũng sẽ thuộc về người khác</div>
-        <div class="content-line">Và cho đến cuối cùng thì hầu như ai rồi cũng sẽ già sẽ bệnh và không thoát khỏi cái Chết.</div>
-        <div class="content-line">Cuộc đời ai hay bất cứ cái gì cũng đều trải qua 12 giai đoạn của vòng trường sinh.
-         Có thời thắng lợi huy hoàng cũng có lúc suy vong,thất bại.Cho nên có được thứ mình ước ao cũng chưa chắc đã tốt, và không đạt được điều minh muốn cũng chưa hẳn là xấu</div>
-
     </div>
 
-    <!-- 8 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">8.</div>
-            <div class="type-title">Và.....</div>
+    <div class="category">
+        <div class="category-title">💰 Thu chi</div>
+        <div class="button-group">
+            <button onclick="editItem('fin_thu')" id="fin_thu">Tổng thu: ...</button>
+            <button onclick="editItem('fin_chi')" id="fin_chi">Tổng chi: ...</button>
         </div>
-        <div class="content-line">Dù biết thực tế cuộc sống là như vậy, nhưng người ta vẫn đi theo vết bánh xe đổ,vì cớ sao? Vì rằng cái họ cần chính là sự an toàn, không bị trói buộc
-        được tự do làm những gì mình thích,được gần gũi người mình yêu thương,tránh xa những người mà họ không thích.Họ muốn người khác phải làm theo ý mình thay vì bản thân 
-        phải làm theo ý người khác.</div>
-        <div class="content-line">Nhưng cuộc đời phũ phàng.Dù cho họ có nhiều quyền lực rất lớn đi nữa, nhưng cũng không thể điều khiến tất cả mọi thứ, mọi người theo ý họ,
-        vì bản thân họ là có giới hạn, năng lực của họ bị phụ thuộc vào nhiều yếu tố khác nhau. Còn bản thân thế giới và vũ trụ thì vô hạn vô biên về các biến và các loại năng lực
-        .Nên các cụ mới nói, vỏ quýt dày có móng tay nhọn, núi cao sẽ có núi cao hơn. Chỉ có thể thắng được những người yếu thế hơn mình, con những người ngang cơ thì 50/50 , những
-        người mà hơn hẳn mình về mọi mặt thì mình không có cửa.</div>
-        <div class="content-line">Và dù cho bản thân có ghê gớm đến đâu thì so với vũ trụ bao la mình vẫn chỉ như hạt bụi li ti không đáng bận tâm.
-        Ra oai để bắt nạt những kẻ yếu thế hơn mình thì có gì hay ho.</div>
-        <div class="content-line">Dùng tài năng của bản thân để giúp người, cứu người thoát khỏi tai ương, bệnh tật,tù tội,chia ly,tai nạn,khổ đau...thì không bao giờ biết chán,
-        càng không phải lo chuyện ăn ở,...mà lại làm cho cuộc sống càng tốt đẹp hơn lên, đi đến đâu mọi người cũng cảm thấy hoan hỉ.</div>
-        <div class="content-line">Nhưng ngược lại dùng tài năng của bản thân để
-        tìm cách thăng quan tiến chức, chèn ép kẻ yếu thế, doạ nạt cướp bóc,hãm hại người khác... sớm muộn cũng được vào tù bóc lịch, hoặc sau khi chết sẽ được quăng vào địa ngục tha hồ
-        tận hưởng mọi sự tra tấn khốc liệt</div>
-
-
     </div>
 
-    <!-- 9 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">9.</div>
-            <div class="type-title">Làm người sẽ gặp những gì:</div>
+    <div class="category">
+        <div class="category-title">🌐 Mạng lưới</div>
+        <div class="button-group">
+            <button onclick="editItem('net_giadinh')" id="net_giadinh">Gia đình: ...</button>
+            <button onclick="editItem('net_doitac')" id="net_doitac">Đối tác: ...</button>
         </div>
-        <div class="content-line">Ốm đau, bệnh tật dai dẳng, ung thư, tranh chấp, hãm hại, ép buộc, chửi bới, bị vu oan giá hoạ, bị tai bay vạ gió.</div>
-        <div class="content-line">Trộm cướp, hiếp dâm, vỡ nợ, bạo lực, ly hôn, cãi nhau, đánh nhau, đập phá, kiện cáo, tù tội, giết người,hoả hoạn, lũ lụt, bão, động đất,
-        sóng thần, núi lửa...</div>
-        <div class="content-line">Tham nhũng, lừa đảo chiếm đoạt tài sản, thân xác, mua bán người, mua bán nội tạng, nghiện ngập, cờ bạc, xã hội đen,
-        tai nạn giao thông, tai nạn nghề nghiệp, an toàn vệ sinh thực phẩm </div>
-        <div class="content-line">Thiên tai, dịch bệnh, thiên thạch, biến đổi khí hậu, chiến tranh, bao vây cấm vận kinh tế, ngoại giao...Di cư</div>
-<div class="content-line">Ô nhiễm nguồn nước, Ô nhiễm không khí, Ô nhiễm đất, Ô nhiễm tiếng ồn, thú dữ, côn trùng độc</div>
-<div class="content-line">Dĩ nhiên không tránh khỏi cái Chết</div>
-<div class="content-line">Phân biệt vùng miền, phân biệt chủng tộc,khác biệt ngôn ngữ, văn hoá.</div>
-
-
     </div>
 
-    <!-- 10 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">10.</div>
-            <div class="type-title">Bài học rút ra sau nhiều năm chiêm nghiệm thực tế :</div>
+    <div class="category">
+        <div class="category-title" style="color: #fbbf24;">💎 Tài sản</div>
+        <div class="button-group">
+            <button onclick="editItem('asset_bds')" id="asset_bds">Bất động sản: ...</button>
+            <button onclick="editItem('asset_tietkiem')" id="asset_tietkiem">Tiết kiệm: ...</button>
         </div>
-        <div class="content-line">Bạn gặp phải sự đau khổ bất hạnh, khó khăn,thử thách... là do nghiệp bất thiện cho quả</div>
-        <div class="content-line">Bạn gặp được sự may mắn, an vui, hạnh phúc, thoải mái... là do nghiệp thiện cho quả.</div>
-        <div class="content-line">Hãy nhớ rằng Tâm thiện sẽ cho quả thiện, Tâm bất thiện sẽ cho quả bất thiện.   </div>
-        <div class="content-line">Tựu trung cuộc sống của ta như thế nào là do ta lựa chọn tâm thiện hay 
-        tâm bất thiện để nuôi dưỡng chăm sóc mà thôi. Dù cho ngoài kia có xảy ra chuyện đau khổ bất hạnh, bất công đến đâu đi nữa thì điều đó cũng không quan trọng, cái quan trọng là 
-        cách mà bạn phản ứng khi những khổ đau, bất hạnh ấy xảy ra. Nếu khi ấy bạn khởi lên sân hận, trách móc, thù hận....vô số tâm bất thiện sẽ sinh lên và khi các tâm bất thiện ấy sinh lên
-        ko có gì đảm bảo vấn đề cảu bạn được giải quyết, nhưng các nghiệp bất thiện bạn đã tạo ra chỉ có bạn gánh mà thôi..</div>
-         <div class="content-line">Ngược lại
-        khi những khổ đau bất hạnh xảy đến, tâm bạn không khởi lên sự thích thú, không khởi lên sự ghét bỏ, không khởi lên sự thích thú và ghét bỏ, chỉ an trú giữ chánh niệm
-        với ý nghĩ, ta đang trả quả các ác nghiệp trong quá khứ của mình, vậy nên hãy an vui tự tại và giữ chánh niệm trên thân. Không hướng đến phước
-        Không hướng đến phi phước, Không hướng đến bất động. Tâm được hoàn toàn tịch tịnh.</div>
-
-
     </div>
 
-    <!-- 11 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">11.</div>
-            <div class="type-title">Cách cuộc sống vận hành</div>
+    <div class="category">
+        <div class="category-title" style="color: #f87171;">🚀 Mục tiêu sống</div>
+        <div class="button-group">
+            <button onclick="editItem('goal_1nam')" id="goal_1nam">Ngắn hạn: ...</button>
+            <button onclick="editItem('goal_cuocdoi')" id="goal_cuocdoi">Sứ mệnh: ...</button>
         </div>
-        <div class="content-line">Bất cứ cái gì hay bất cứ ai, bất cứ nghề nghiệp nào cũng vậy, sẽ có cái giỏi hơn,mạnh hơn, có cái bằng, có cái ngang ngửa 
-        và có cái kém hơn,yếu hơn ta. Muốn điều chỉnh được bất cứ cái nào dù giỏi hơn, ngang ngửa hay yếu thế hơn ta cần học cách điều chỉnh cái xung khắc với nó,
-        đối lập với nó hoặc cái sinh ra nó, hoặc cái hỗ trợ cho nó, hoặc cái cản trở, phá hoại nó. Đấy là thứ duy nhất ta cần phải học tập và rèn luyện. 
-        chỉ cần ta có thể điều chỉnh được mấy cái đó thì dầu cho người ta có mạnh đến đâu ta cũng ko cần sợ hãi, dù cho họ có tài giỏi cỡ nào cũng không cần lo lắng.</div>
-        <div class="content-line">Nếu không muốn gặp rắc rối hay phiền phức, hãy âm thầm lặng lẽ làm mọi thứ trong bí mật tuyệt đối để không ai có thể truy ra dấu vết,
-        không thể biết được ai đã làm, càng không thể biết người ta đã làm như thế nào.Cũng như không thể biết họ làm vậy với ý đồ gì.</div>
-        <div class="content-line">Khả năng hợp tác và kết nối xã hội</div>
     </div>
-
-    <!-- 12 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">12.</div>
-            <div class="type-title"> Sau tất cả :</div>
-        </div>
-        <div class="content-line">Sau cùng, tất cả nhưng gì được sanh đều không thể tránh khỏi già bệnh và chết, chỉ là sớm hay muộn mà thôi.</div>
-        <div class="content-line">Bạn có thể không giữ được thanh xuân, không giữ được sức khỏe, không giữ được của cải tài sản, không giữ được những thứ không thuộc vè mình
-        nhưng bạn có thể giữ được cho tâm mình được hiền thiện, tử tế, không hận, không sân, không nghĩ đến hại mình, không  nghĩ đến hại người, không nghĩ đến hại cả hai
-        luôn hướng đến sự thương xót tất cả chúng hữu tình với từ tâm vô lượng. Dầu cho có bị nghi ngờ, dầu cho có bị hắt hủi, dầu cho có bị oan ức, dầu cho có bị hãm hại,
-        dầu cho có bị chửi mắng,chê bai...</div>
-        <div class="content-line">...</div>
-    </div>
-
-         <!-- 12 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">13.</div>
-            <div class="type-title"> Sau tất cả :</div>
-        </div>
-       <div class="content-line">Đói thì cần được ăn</div>
-<div class="content-line">Khát thì cần được uống</div>
-<div class="content-line">Lạnh thì cần được sưởi ấm</div>
-<div class="content-line">Nóng thì càn được mát mẻ</div>
-<div class="content-line">Sợ hãi thì cần được che chở</div>
-<div class="content-line">Lúng túng thì cần được hướng dẫn</div>
-<div class="content-line">Bị bắt nạt thì cần được bảo vệ</div>
-<div class="content-line">Cô đơn thì cần được tâm sự</div>
-<div class="content-line">Sai lầm thì cần được tha thứ</div>
-<div class="content-line">Bỏ cuộc thì cần được động viên,khích lệ</div>
-<div class="content-line">Gặp nguy khốn thì cần được giúp đỡ</div>
-<div class="content-line">Có bệnh thì cần được chữa bệnh</div>
-<div class="content-line">Rụt rè thì cần được huấn luyện</div>
-<div class="content-line">Có khoảng cách thì cần được chăm sóc</div>
-<div class="content-line">Bị bỏ rơi thì cần được cứu vớt, cưu mang</div>
-<div class="content-line">Bị coi thường thì cần giữ im lặng</div>
-<div class="content-line">Bị đánh đập thì cần tránh đi càng nhanh càng tốt</div>
-<div class="content-line">Bị người ta ăn vạ thì cần được 1 đứa ăn vạ khác bảo vệ</div>
-<div class="content-line">Bị người ta chửi hãy thuê 1 đứa nhiều trò nghịch ngợm xử lý</div>
-<div class="content-line">Bạn tôn trọng người khác không có nghĩa là người ta cũng sẽ tôn trọng bạn</div>
-<div class="content-line">Bạn tử tế với người khác không có nghĩa người ta cũng sẽ phải tử tế lại với bạn</div>
-<div class="content-line">Bạn tốt với ai, tử tế với ai đấy là quyền của bạn</div>
-<div class="content-line">Còn người ta có tốt với bạn hay không, có tử tế với bạn hay không thì đó là quyền của họ</div>
-<div class="content-line">Đừng hy vọng quá nhiều ở người khác, sẽ bớt đau khổ</div>
-<div class="content-line">Dù bạn làm gì cho ai cũng đừng quá hy vọng ngày nào đó sẽ nhờ vả được ở họ điều gì</div>
-<div class="content-line">Hãy luôn chuẩn bị cho mình những tình huống xấu nhất</div>
-<div class="content-line">Vì trên đời chuyện gì cũng có thể xảy ra</div>
-<div class="content-line">...</div>
-
-    </div>
-       
-
-        <!-- 12 -->
-    <div class="box">
-        <div class="title-line">
-            <div class="dot">12.</div>
-            <div class="type-title"> Sau tất cả :</div>
-        </div>
-        <div class="content-line">Sau cùng, tất cả nhưng gì được sanh đều không thể tránh khỏi già bệnh và chết, chỉ là sớm hay muộn mà thôi.</div>
-        <div class="content-line">Bạn có thể không giữ được thanh xuân, không giữ được sức khỏe, không giữ được của cải tài sản, không giữ được những thứ không thuộc vè mình
-        nhưng bạn có thể giữ được cho tâm mình được hiền thiện, tử tế, không hận, không sân, không nghĩ đến hại mình, không  nghĩ đến hại người, không nghĩ đến hại cả hai
-        luôn hướng đến sự thương xót tất cả chúng hữu tình với từ tâm vô lượng. Dầu cho có bị nghi ngờ, dầu cho có bị hắt hủi, dầu cho có bị oan ức, dầu cho có bị hãm hại,
-        dầu cho có bị chửi mắng,chê bai...
-        <div class="content-line">...</div>
-
-        </div>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 </div>
 
-<script>
-    // Gán chỉ số cho từng span để tính delay
-    document.querySelectorAll('#text span').forEach((span, i) => {
-      span.style.setProperty('--i', i);
+<div class="overlay" id="overlay" onclick="closeModal()"></div>
+<div id="input-area">
+    <h3 id="modal-title">Cập nhật</h3>
+    <input type="text" id="user-input" placeholder="Nhập nội dung mới...">
+    <div class="modal-btns">
+        <button class="btn-save" onclick="saveToCloud()">Lưu Cloud</button>
+        <button class="btn-cancel" onclick="closeModal()">Đóng</button>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "THAY_BANG_API_KEY_CUA_BAN",
+        authDomain: "PROJECT_CUA_BAN.firebaseapp.com",
+        projectId: "PROJECT_CUA_BAN",
+        storageBucket: "PROJECT_CUA_BAN.appspot.com",
+        messagingSenderId: "...",
+        appId: "..."
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    let currentId = '';
+
+    window.editItem = (id) => {
+        currentId = id;
+        document.getElementById('modal-title').innerText = "Sửa: " + id.replace(/_/g, ' ');
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('input-area').style.display = 'block';
+    };
+
+    window.closeModal = () => {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('input-area').style.display = 'none';
+    };
+
+    window.saveToCloud = async () => {
+        const val = document.getElementById('user-input').value;
+        if(!val) return;
+        await setDoc(doc(db, "full_life_data", currentId), { value: val });
+        document.getElementById('user-input').value = '';
+        closeModal();
+    };
+
+    // Danh sách ID để lắng nghe đồng bộ
+    const allIds = [
+        'env_nha', 'env_lamviec', 'job_duan', 'job_luong', 'club_thethao', 'club_congdong',
+        'skill_ngoaingu', 'skill_chuyenmon', 'hobby_dv', 'hobby_sangtao', 'habit_sang', 'habit_toi',
+        'fin_thu', 'fin_chi', 'net_giadinh', 'net_doitac', 'asset_bds', 'asset_tietkiem', 'goal_1nam', 'goal_cuocdoi'
+    ];
+
+    allIds.forEach(id => {
+        onSnapshot(doc(db, "full_life_data", id), (s) => {
+            if(s.exists()){
+                document.getElementById(id).innerText = id.split('_')[1].toUpperCase() + ": " + s.data().value;
+            }
+        });
     });
-  </script>
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
