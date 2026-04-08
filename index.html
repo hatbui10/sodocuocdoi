@@ -3,228 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Manager Pro - Dark Mode Full</title>
+    <title>Sơ Đồ Cuộc Đời - Vĩnh Viễn</title>
     <style>
-        :root {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent-blue: #38bdf8;
-            --border: #334155;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: var(--bg-body);
-            color: var(--text-main);
-            margin: 0; padding: 20px;
-        }
-
+        :root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --accent: #38bdf8; --border: #334155; --success: #22c55e; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 15px; margin: 0; }
         .container { max-width: 900px; margin: 0 auto; }
-        h2 { text-align: center; color: var(--accent-blue); margin-bottom: 30px; }
-
-        .category {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .category-title {
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 8px;
-        }
-
-        .button-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-        }
-
-        button {
-            background: #0f172a;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: left;
-            transition: 0.2s;
-            font-size: 14px;
-        }
-
-        button:hover {
-            border-color: var(--accent-blue);
-            background: #1e293b;
-            transform: translateY(-2px);
-        }
-
-        /* Modal */
-        .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display:none; z-index:9; }
-        #input-area {
-            position: fixed; top:50%; left:50%; transform:translate(-50%, -50%);
-            background: var(--bg-card); padding: 25px; border-radius: 15px;
-            width: 90%; max-width: 400px; display:none; z-index:10; border: 1px solid var(--accent-blue);
-        }
-        input { width: 100%; padding: 12px; margin: 15px 0; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 5px; box-sizing: border-box;}
-        .modal-btns { display: flex; gap: 10px; }
-        .btn-save { background: var(--accent-blue); color: #0f172a; font-weight: bold; flex: 2; }
-        .btn-cancel { background: #475569; flex: 1; }
+        h1 { text-align: center; color: var(--accent); font-size: 1.4rem; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+        .category { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .category-title { font-weight: bold; font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; }
+        .category-title::before { content: ""; width: 4px; height: 14px; background: var(--accent); margin-right: 8px; border-radius: 2px; }
+        .btn-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+        button.item { background: #0f172a; color: var(--text); border: 1px solid var(--border); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; font-size: 13px; transition: 0.2s; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        button.item:hover { border-color: var(--accent); background: #1e293b; transform: translateY(-2px); }
+        .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display:none; z-index:99; backdrop-filter: blur(4px); }
+        #modal { position: fixed; top:50%; left:50%; transform:translate(-50%, -50%); background: var(--card); padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; display:none; z-index:100; border: 1px solid var(--border); text-align: center; }
+        input { width: 100%; padding: 14px; margin: 15px 0; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 10px; box-sizing: border-box; font-size: 16px; outline: none; }
+        .btn-save { background: var(--accent); color: #0f172a; font-weight: bold; width: 100%; padding: 14px; border-radius: 10px; border: none; cursor: pointer; font-size: 14px; }
+        .active-saved { background: var(--success) !important; color: white !important; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>HỆ THỐNG QUẢN TRỊ CUỘC SỐNG</h2>
+    <h1>SƠ ĐỒ CUỘC ĐỜI</h1>
 
     <div class="category">
-        <div class="category-title">🏠 Môi trường sống</div>
-        <div class="button-group">
-            <button onclick="editItem('env_nha')" id="env_nha">Nhà cửa: ...</button>
-            <button onclick="editItem('env_lamviec')" id="env_lamviec">Góc làm việc: ...</button>
+        <div class="category-title">🏠 Môi trường</div>
+        <div class="btn-group">
+            <button class="item" onclick="edit('env_nha')" id="env_nha">Nhà cửa: ...</button>
+            <button class="item" onclick="edit('env_khupho')" id="env_khupho">Khu phố: ...</button>
+            <button class="item" onclick="edit('env_vieclam')" id="env_vieclam">Làm việc: ...</button>
         </div>
     </div>
 
     <div class="category">
-        <div class="category-title">💼 Nghề nghiệp</div>
-        <div class="button-group">
-            <button onclick="editItem('job_duan')" id="job_duan">Dự án: ...</button>
-            <button onclick="editItem('job_luong')" id="job_luong">Vị trí: ...</button>
+        <div class="category-title">💼 Nghề nghiệp & Kỹ năng</div>
+        <div class="btn-group">
+            <button class="item" onclick="edit('job_cur')" id="job_cur">Công việc: ...</button>
+            <button class="item" onclick="edit('skill_pro')" id="skill_pro">Chuyên môn: ...</button>
+            <button class="item" onclick="edit('skill_soft')" id="skill_soft">Kỹ năng mềm: ...</button>
         </div>
     </div>
 
     <div class="category">
-        <div class="category-title">👥 Hội nhóm</div>
-        <div class="button-group">
-            <button onclick="editItem('club_thethao')" id="club_thethao">Thể thao: ...</button>
-            <button onclick="editItem('club_congdong')" id="club_congdong">Cộng đồng: ...</button>
+        <div class="category-title">🎨 Thói quen & Sở thích</div>
+        <div class="btn-group">
+            <button class="item" onclick="edit('habit_good')" id="habit_good">Thói quen: ...</button>
+            <button class="item" onclick="edit('hobby')" id="hobby">Sở thích: ...</button>
+            <button class="item" onclick="edit('club')" id="club">Hội nhóm: ...</button>
         </div>
     </div>
 
     <div class="category">
-        <div class="category-title">🧠 Kỹ năng</div>
-        <div class="button-group">
-            <button onclick="editItem('skill_ngoaingu')" id="skill_ngoaingu">Ngoại ngữ: ...</button>
-            <button onclick="editItem('skill_chuyenmon')" id="skill_chuyenmon">Chuyên môn: ...</button>
+        <div class="category-title">🌐 Quan hệ</div>
+        <div class="btn-group">
+            <button class="item" onclick="edit('net_fam')" id="net_fam">Gia đình: ...</button>
+            <button class="item" onclick="edit('net_friend')" id="net_friend">Bạn bè: ...</button>
+            <button class="item" onclick="edit('net_work')" id="net_work">Đối tác: ...</button>
         </div>
     </div>
 
     <div class="category">
-        <div class="category-title">🎨 Sở thích</div>
-        <div class="button-group">
-            <button onclick="editItem('hobby_dv')" id="hobby_dv">Giải trí: ...</button>
-            <button onclick="editItem('hobby_sangtao')" id="hobby_sangtao">Sáng tạo: ...</button>
+        <div class="category-title" style="color: #fbbf24;">💰 Tài chính</div>
+        <div class="btn-group">
+            <button class="item" onclick="edit('fin_in')" id="fin_in">Thu nhập: ...</button>
+            <button class="item" onclick="edit('fin_out')" id="fin_out">Chi tiêu: ...</button>
+            <button class="item" onclick="edit('fin_bds')" id="fin_bds">Nhà đất: ...</button>
         </div>
     </div>
 
     <div class="category">
-        <div class="category-title">🔄 Thói quen</div>
-        <div class="button-group">
-            <button onclick="editItem('habit_sang')" id="habit_sang">Sáng sớm: ...</button>
-            <button onclick="editItem('habit_toi')" id="habit_toi">Trước khi ngủ: ...</button>
+        <div class="category-title" style="color: #f87171;">🚀 Mục tiêu</div>
+        <div class="btn-group">
+            <button class="item" onclick="edit('goal_s')" id="goal_s">Ngắn hạn: ...</button>
+            <button class="item" onclick="edit('goal_l')" id="goal_l">Dài hạn: ...</button>
         </div>
     </div>
-
-    <div class="category">
-        <div class="category-title">💰 Thu chi</div>
-        <div class="button-group">
-            <button onclick="editItem('fin_thu')" id="fin_thu">Tổng thu: ...</button>
-            <button onclick="editItem('fin_chi')" id="fin_chi">Tổng chi: ...</button>
-        </div>
-    </div>
-
-    <div class="category">
-        <div class="category-title">🌐 Mạng lưới</div>
-        <div class="button-group">
-            <button onclick="editItem('net_giadinh')" id="net_giadinh">Gia đình: ...</button>
-            <button onclick="editItem('net_doitac')" id="net_doitac">Đối tác: ...</button>
-        </div>
-    </div>
-
-    <div class="category">
-        <div class="category-title" style="color: #fbbf24;">💎 Tài sản</div>
-        <div class="button-group">
-            <button onclick="editItem('asset_bds')" id="asset_bds">Bất động sản: ...</button>
-            <button onclick="editItem('asset_tietkiem')" id="asset_tietkiem">Tiết kiệm: ...</button>
-        </div>
-    </div>
-
-    <div class="category">
-        <div class="category-title" style="color: #f87171;">🚀 Mục tiêu sống</div>
-        <div class="button-group">
-            <button onclick="editItem('goal_1nam')" id="goal_1nam">Ngắn hạn: ...</button>
-            <button onclick="editItem('goal_cuocdoi')" id="goal_cuocdoi">Sứ mệnh: ...</button>
-        </div>
-    </div>
-
 </div>
 
-<div class="overlay" id="overlay" onclick="closeModal()"></div>
-<div id="input-area">
-    <h3 id="modal-title">Cập nhật</h3>
-    <input type="text" id="user-input" placeholder="Nhập nội dung mới...">
-    <div class="modal-btns">
-        <button class="btn-save" onclick="saveToCloud()">Lưu Cloud</button>
-        <button class="btn-cancel" onclick="closeModal()">Đóng</button>
-    </div>
+<div class="overlay" id="ovl" onclick="cls()"></div>
+<div id="modal">
+    <h3 id="m-t" style="margin:0; color:var(--accent);">Cập nhật</h3>
+    <input type="text" id="inp" placeholder="Nhập nội dung mới...">
+    <button id="btnS" class="btn-save" onclick="save()">LƯU LÊN CLOUD</button>
 </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+    // MÃ CỦA BẠN
     const firebaseConfig = {
-        apiKey: "THAY_BANG_API_KEY_CUA_BAN",
-        authDomain: "PROJECT_CUA_BAN.firebaseapp.com",
-        projectId: "PROJECT_CUA_BAN",
-        storageBucket: "PROJECT_CUA_BAN.appspot.com",
-        messagingSenderId: "...",
-        appId: "..."
+      apiKey: "AIzaSyD1ddvaaA4iQcTwEnvg0havIt6RsxcBkN4",
+      authDomain: "sodocuocdoi.firebaseapp.com",
+      projectId: "sodocuocdoi",
+      storageBucket: "sodocuocdoi.firebasestorage.app",
+      messagingSenderId: "343754660099",
+      appId: "1:343754660099:web:c916d3f1429a30b643136",
+      measurementId: "G-D5GCC4ZV73"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    let currentId = '';
+    let cur = '';
 
-    window.editItem = (id) => {
-        currentId = id;
-        document.getElementById('modal-title').innerText = "Sửa: " + id.replace(/_/g, ' ');
-        document.getElementById('overlay').style.display = 'block';
-        document.getElementById('input-area').style.display = 'block';
+    window.edit = (id) => {
+        cur = id;
+        document.getElementById('m-t').innerText = "SỬA: " + id.toUpperCase();
+        document.getElementById('ovl').style.display = 'block';
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('inp').focus();
     };
 
-    window.closeModal = () => {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('input-area').style.display = 'none';
+    window.cls = () => {
+        document.getElementById('ovl').style.display = 'none';
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('btnS').innerText = "LƯU LÊN CLOUD";
+        document.getElementById('btnS').classList.remove('active-saved');
+        document.getElementById('inp').value = "";
     };
 
-    window.saveToCloud = async () => {
-        const val = document.getElementById('user-input').value;
+    window.save = async () => {
+        const val = document.getElementById('inp').value;
+        const b = document.getElementById('btnS');
         if(!val) return;
-        await setDoc(doc(db, "full_life_data", currentId), { value: val });
-        document.getElementById('user-input').value = '';
-        closeModal();
+        b.innerText = "Đang lưu...";
+        try {
+            await setDoc(doc(db, "LifeDataFull", cur), { t: val });
+            b.innerText = "Xong! ✅";
+            b.classList.add('active-saved');
+            setTimeout(() => { cls(); }, 700);
+        } catch (e) {
+            alert("Lỗi: Hãy kiểm tra tab 'Rules' trong Firebase!");
+            b.innerText = "LỖI!";
+        }
     };
 
-    // Danh sách ID để lắng nghe đồng bộ
-    const allIds = [
-        'env_nha', 'env_lamviec', 'job_duan', 'job_luong', 'club_thethao', 'club_congdong',
-        'skill_ngoaingu', 'skill_chuyenmon', 'hobby_dv', 'hobby_sangtao', 'habit_sang', 'habit_toi',
-        'fin_thu', 'fin_chi', 'net_giadinh', 'net_doitac', 'asset_bds', 'asset_tietkiem', 'goal_1nam', 'goal_cuocdoi'
-    ];
-
-    allIds.forEach(id => {
-        onSnapshot(doc(db, "full_life_data", id), (s) => {
-            if(s.exists()){
-                document.getElementById(id).innerText = id.split('_')[1].toUpperCase() + ": " + s.data().value;
+    const ids = ['env_nha','env_khupho','env_vieclam','job_cur','skill_pro','skill_soft','habit_good','club','hobby','net_fam','net_friend','net_work','fin_in','fin_out','fin_bds','goal_s','goal_l'];
+    ids.forEach(id => {
+        onSnapshot(doc(db, "LifeDataFull", id), (s) => {
+            if(s.exists()) {
+                const label = id.split('_').pop().toUpperCase();
+                document.getElementById(id).innerText = label + ": " + s.data().t;
             }
         });
     });
