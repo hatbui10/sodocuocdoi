@@ -3,55 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sơ Đồ Cuộc Đời - Minimal</title>
+    <title>Sơ Đồ Cuộc Đời - Fix Lỗi</title>
     <style>
         :root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --accent: #38bdf8; --border: #334155; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 20px; margin: 0; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 500px; margin: 0 auto; }
-        
-        /* Nút bấm tối giản - Chỉ hiện tên lĩnh vực */
         .field-btn { 
             background: var(--card); border: 1px solid var(--border); color: var(--text);
-            padding: 20px 10px; border-radius: 12px; text-align: center; cursor: pointer;
-            transition: 0.2s; font-weight: bold; font-size: 14px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 25px 10px; border-radius: 12px; text-align: center; cursor: pointer;
+            font-weight: bold; font-size: 14px;
         }
-        .field-btn:active { transform: scale(0.95); background: #2d3a4f; }
-        .field-btn i { font-size: 20px; margin-bottom: 8px; display: block; }
-
-        /* Modal nhập liệu */
+        .field-btn:active { transform: scale(0.95); }
         .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display:none; z-index:9; backdrop-filter: blur(4px); }
         #modal { position: fixed; top:50%; left:50%; transform:translate(-50%, -50%); background: var(--card); padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; display:none; z-index:10; border: 1px solid var(--accent); text-align: center; }
-        label { color: var(--accent); font-size: 12px; text-transform: uppercase; font-weight: bold; }
-        textarea { width: 100%; height: 100px; padding: 12px; margin: 15px 0; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 8px; box-sizing: border-box; font-size: 16px; font-family: inherit; resize: none; }
+        textarea { width: 100%; height: 120px; padding: 12px; margin: 15px 0; background: #0f172a; border: 1px solid var(--border); color: white; border-radius: 8px; box-sizing: border-box; font-size: 16px; outline: none; }
         .save-btn { background: var(--accent); color: #0f172a; font-weight: bold; width: 100%; padding: 14px; border-radius: 10px; border: none; cursor: pointer; }
-        .close-txt { color: #94a3b8; font-size: 12px; margin-top: 15px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <h2 style="text-align: center; color: var(--accent); margin-bottom: 30px; letter-spacing: 2px;">MY LIFE MAP</h2>
+    <h2 style="text-align: center; color: var(--accent); margin-bottom: 30px;">MY LIFE MAP</h2>
     
     <div class="grid">
-        <div class="field-btn" onclick="openBox('nha', 'Nhà cửa')">🏠<br>Nhà cửa</div>
-        <div class="field-btn" onclick="openBox('job', 'Công việc')">💼<br>Công việc</div>
-        <div class="field-btn" onclick="openBox('kn', 'Kỹ năng')">⚡<br>Kỹ năng</div>
-        <div class="field-btn" onclick="openBox('sk', 'Sức khỏe')">💪<br>Sức khỏe</div>
-        <div class="field-btn" onclick="openBox('tc', 'Tài chính')">💰<br>Tài chính</div>
-        <div class="field-btn" onclick="openBox('gd', 'Gia đình')">❤️<br>Gia đình</div>
-        <div class="field-btn" onclick="openBox('bb', 'Bạn bè')">🤝<br>Bạn bè</div>
-        <div class="field-btn" onclick="openBox('hv', 'Học vấn')">📚<br>Học vấn</div>
-        <div class="field-btn" onclick="openBox('gt', 'Giải trí')">🎮<br>Giải trí</div>
-        <div class="field-btn" onclick="openBox('tl', 'Tâm linh')">🧘<br>Tâm linh</div>
-        <div class="field-btn" onclick="openBox('mt', 'Mục tiêu')">🚀<br>Mục tiêu</div>
+        <div class="field-btn" onclick="openBox('nha', 'Nhà cửa')">🏠 Nhà cửa</div>
+        <div class="field-btn" onclick="openBox('job', 'Công việc')">💼 Công việc</div>
+        <div class="field-btn" onclick="openBox('kn', 'Kỹ năng')">⚡ Kỹ năng</div>
+        <div class="field-btn" onclick="openBox('sk', 'Sức khỏe')">💪 Sức khỏe</div>
+        <div class="field-btn" onclick="openBox('tc', 'Tài chính')">💰 Tài chính</div>
+        <div class="field-btn" onclick="openBox('gd', 'Gia đình')">❤️ Gia đình</div>
+        <div class="field-btn" onclick="openBox('bb', 'Bạn bè')">🤝 Bạn bè</div>
+        <div class="field-btn" onclick="openBox('hv', 'Học vấn')">📚 Học vấn</div>
+        <div class="field-btn" onclick="openBox('gt', 'Giải trí')">🎮 Giải trí</div>
+        <div class="field-btn" onclick="openBox('tl', 'Tâm linh')">🧘 Tâm linh</div>
+        <div class="field-btn" onclick="openBox('mt', 'Mục tiêu')">🚀 Mục tiêu</div>
     </div>
 
     <div class="overlay" id="bg-fade" onclick="closeBox()"></div>
     <div id="modal">
-        <label id="m-label">Lĩnh vực</label>
-        <textarea id="m-input" placeholder="Nội dung trống..."></textarea>
-        <button class="save-btn" onclick="saveData()">CẬP NHẬT VÀ LƯU</button>
-        <div class="close-txt" onclick="closeBox()">Đóng lại</div>
+        <h3 id="m-label" style="margin:0; color:var(--accent)">...</h3>
+        <textarea id="m-input" placeholder="Nhập nội dung vào đây..."></textarea>
+        <button class="save-btn" onclick="saveData()">LƯU LÊN CLOUD</button>
     </div>
 
     <script type="module">
@@ -69,28 +60,24 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        let currentField = '';
+        let curId = '';
 
-        // Khi bấm vào nút: Lấy dữ liệu từ Cloud về và hiện lên Modal
         window.openBox = async (id, title) => {
-            currentField = id;
+            curId = id;
             document.getElementById('m-label').innerText = title;
             document.getElementById('bg-fade').style.display = 'block';
             document.getElementById('modal').style.display = 'block';
-            document.getElementById('m-input').value = "Đang tải...";
-            
+            document.getElementById('m-input').value = "Đang kiểm tra...";
+
             try {
-                const docRef = doc(db, "LifeMapV3", id);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    document.getElementById('m-input').value = docSnap.data().txt;
-                } else {
-                    document.getElementById('m-input').value = "";
-                }
+                const s = await getDoc(doc(db, "LifeDataFinal", id));
+                // Nếu có dữ liệu thì hiện, nếu không thì để trống cho người dùng nhập
+                document.getElementById('m-input').value = s.exists() ? s.data().t : "";
             } catch (e) {
-                document.getElementById('m-input').value = "Lỗi tải dữ liệu!";
+                console.error(e);
+                document.getElementById('m-input').value = ""; // Nếu lỗi thì cứ cho nhập mới
+                alert("Lưu ý: Có thể bạn chưa chỉnh Rules thành 'true'");
             }
-            document.getElementById('m-input').focus();
         };
 
         window.closeBox = () => {
@@ -100,18 +87,11 @@
 
         window.saveData = async () => {
             const val = document.getElementById('m-input').value;
-            const btn = document.querySelector('.save-btn');
-            btn.innerText = "ĐANG LƯU...";
             try {
-                await setDoc(doc(db, "LifeMapV3", currentField), { txt: val });
-                btn.innerText = "THÀNH CÔNG! ✅";
-                setTimeout(() => { 
-                    btn.innerText = "CẬP NHẬT VÀ LƯU";
-                    closeBox(); 
-                }, 800);
+                await setDoc(doc(db, "LifeDataFinal", curId), { t: val });
+                closeBox();
             } catch (e) {
-                alert("Lỗi lưu dữ liệu!");
-                btn.innerText = "CẬP NHẬT VÀ LƯU";
+                alert("Không thể lưu! Hãy vào tab Rules và sửa thành: allow read, write: if true;");
             }
         };
     </script>
